@@ -8,6 +8,7 @@ import { VerificationComponent } from '../verification/verification.component';
 import { AccueilComponent } from '../accueil/accueil.component';
 import{CodificationComponent } from '../codification/codification.component';
 import { ListeCodificationComponent } from '../liste-codification/liste-codification.component';
+import { EtudiantComponent } from '../etudiant/etudiant.component';
 
 
 
@@ -18,7 +19,8 @@ const routes: Routes = [
     {path: 'inscription' , component:InscriptionComponent},
     {path: "verifierCode/:email", component:VerificationComponent},
     {path: 'codification',component:CodificationComponent, canActivate:[AuthGuard]},
-    {path: 'liste-codification',component:ListeCodificationComponent}
+    {path: 'liste-codification',component:ListeCodificationComponent},
+    {path:'etudiant', component:EtudiantComponent, canActivate:[AuthGuard]}
     
 ];
 @NgModule({

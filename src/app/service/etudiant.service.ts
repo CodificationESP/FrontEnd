@@ -16,6 +16,9 @@ export class EtudiantService {
     create(user: User){
         return this.dal.create(['Users'], user);
     }
+    createEtudiant(user: Etudiant){
+        return this.dal.create(['Etudiants'], user);
+    }
     getAllEtudiants() {
         return this.dal.get(['etudiants']);
     }

@@ -18,6 +18,7 @@ import { EtudiantService } from './service/etudiant.service';
 import { VerificationComponent } from './verification/verification.component';
 import { CodificationComponent } from './codification/codification.component';
 import { ListeCodificationComponent } from './liste-codification/liste-codification.component';
+import { EtudiantComponent } from './etudiant/etudiant.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { ListeCodificationComponent } from './liste-codification/liste-codificat
     InscriptionComponent,
     VerificationComponent,
     CodificationComponent,
-    ListeCodificationComponent
+    ListeCodificationComponent,
+    EtudiantComponent
   ],
   imports: [
     BrowserModule,

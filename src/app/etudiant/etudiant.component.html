@@ -1,0 +1,112 @@
+<div class="wrapper text-center">
+  <div class="page-header clear-filter" filter-color="orange">
+          <div class="page-header-image" data-parallax="true" style="background-image: url('./assets/img/chambre.jpg');">
+          </div>
+<div class="container">
+
+      <div class="content-center brand" >
+      <form class="example-form"   [formGroup]="signupForm" (ngSubmit)="updateProfil()" >
+      <mat-card class="example-card" style="margin-top:100px">
+          <mat-card-header>
+
+              <mat-toolbar color="primary" style="margin-top:50px;margin-bottom: 20px;">
+                  <span class="spacer"></span>
+                  <h2 style="margin-left:200px">Creer profil</h2>
+                  <span class="spacer"></span>
+                  </mat-toolbar>
+            
+          </mat-card-header>
+          
+          <mat-card-content>
+                 
+                     
+                          
+                          <mat-form-field >
+                              <input matInput type="text" placeholder="Numero carte etudiant" formControlName="numEtud"  />
+                            </mat-form-field><br/>
+                            
+                              <mat-form-field>
+                              <input matInput formControlName="nomEtud" placeholder="Votre nom" />
+                             </mat-form-field><br/>
+                          
+                          
+                          
+                              <mat-form-field>
+                              <input matInput formControlName="prenomEtud" placeholder="votre prenom">
+                             </mat-form-field><br/>
+
+                             <mat-form-field>
+                              <input matInput type="date" formControlName="dateNaiss" placeholder="Votre date de naissance">
+                             </mat-form-field><br/>
+
+                             <mat-form-field>
+                              <input matInput  formControlName="departement" placeholder="Departement">
+                             </mat-form-field><br/>
+                             <mat-form-field>
+                                <input matInput  formControlName="niveau" placeholder="Niveau">
+                               </mat-form-field><br/>
+
+                               <mat-form-field>
+                                <mat-select  formControlName="genre" placeholder="sexe">
+                                  <mat-option value="M">Masculin</mat-option>
+                                  <mat-option value="F">Feminin</mat-option>
+                                </mat-select>
+                                 </mat-form-field><br/>
+                                 <mat-form-field>
+                                    <input matInput  formControlName="formation" placeholder="Formation">
+                                   </mat-form-field><br/>
+                         
+                      
+                 
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-button  type="submit"  >Envoyer</button>
+            <button mat-button type="reset">Annuler</button>
+          </mat-card-actions>
+     
+        </mat-card>
+      
+      </form>
+</div>
+</div>
+
+
+<footer class="footer" data-background-color="black">
+  <div class="container">
+      <nav>
+          <ul>
+              <li>
+                  <a href="https://www.creative-tim.com">
+                      ESP
+                  </a>
+              </li>
+              <li>
+                  <a href="http://presentation.creative-tim.com">
+                      A propos de nous
+                  </a>
+              </li>
+              <li>
+                  <a href="http://blog.creative-tim.com">
+                      Blog
+                  </a>
+              </li>
+              <li>
+                  <a href="https://github.com/creativetimofficial/now-ui-kit/blob/master/LICENSE.md">
+                      MIT License
+                  </a>
+              </li>
+          </ul>
+      </nav>
+      <div class="copyright">
+          &copy;
+          <script>
+              document.write(new Date().getFullYear())
+          </script>, Copyright
+          <a href="http://www.invisionapp.com" target="_blank">ESP</a>/
+          <a href="https://www.creative-tim.com" target="_blank">UCAD</a>.
+      </div>
+  </div>
+</footer>
+</div>
+
+
