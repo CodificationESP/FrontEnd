@@ -1,0 +1,93 @@
+<div class="wrapper text-center">
+        <div class="page-header clear-filter" filter-color="orange">
+                <div class="page-header-image" data-parallax="true" style="background-image: url('./assets/img/chambre.jpg');">
+                </div>
+<div class="container">
+  
+        <div class="content-center brand">
+                <div class="card card-signup" data-background-color="orange">
+                        <form class="form"   [formGroup]="verifierForm" (ngSubmit)="verifierCode()" novalidate>
+                            <div class="header text-center">
+                                <h4 class="title title-up">Verification Code</h4>
+                                <div class="social-line">
+                                    <a href="#" class="btn btn-neutral btn-facebook btn-icon btn-round">
+                                        <i class="fa fa-facebook-square"></i>
+                                    </a>
+                                    <a href="#" class="btn btn-neutral btn-twitter btn-icon btn-lg btn-round">
+                                        <i class="fa fa-twitter"></i>
+                                    </a>
+                                    <a href="#" class="btn btn-neutral btn-google btn-icon btn-round">
+                                        <i class="fa fa-google-plus"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <label class="label label-info">Un code vous a été envoyé sur votre email</label>
+                                <div class="input-group form-group-no-border">
+                                    <span class="input-group-addon">
+                                        <i class="now-ui-icons text_caps-small"></i>
+                                    </span>
+                                    <input type="text" placeholder="Code de verification..." class="form-control" formControlName="code" />
+                                </div>
+                               
+                                <!-- If you want to add a checkbox to this form, uncomment this code -->
+                                <!-- <div class="checkbox">
+                <input id="checkboxSignup" type="checkbox">
+                  <label for="checkboxSignup">
+                  Unchecked
+                  </label>
+                  </div> -->
+                            </div>
+                            <div class="footer text-center">
+                                <button type="submit" [disabled]=" ! verifierForm.valid || loading" class="btn btn-neutral btn-round btn-lg">Confirmer</button>
+                            </div>
+                        </form>
+                        <label class="alert alert-danger" *ngIf="error">{{error}}</label>
+
+                    </div>
+            
+            </div>
+            </div>
+  
+ 
+</div>
+
+
+<footer class="footer" data-background-color="black">
+        <div class="container">
+            <nav>
+                <ul>
+                    <li>
+                        <a href="https://www.creative-tim.com">
+                            ESP
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://presentation.creative-tim.com">
+                            A propos de nous
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://blog.creative-tim.com">
+                            Blog
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/creativetimofficial/now-ui-kit/blob/master/LICENSE.md">
+                            MIT License
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="copyright">
+                &copy;
+                <script>
+                    document.write(new Date().getFullYear())
+                </script>, Copyright
+                <a href="http://www.invisionapp.com" target="_blank">ESP</a>/
+                <a href="https://www.creative-tim.com" target="_blank">UCAD</a>.
+            </div>
+        </div>
+    </footer>
+</div>
+<router-outlet></router-outlet>

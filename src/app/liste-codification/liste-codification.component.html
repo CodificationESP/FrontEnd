@@ -1,0 +1,133 @@
+<div class="wrapper text-center">
+  <div class="page-header clear-filter" filter-color="orange">
+          <div class="page-header-image" data-parallax="true" style="background-image: url('./assets/img/chambre.jpg');">
+          </div>
+<div class="container">
+  <div class="content-center brand">
+         <!-- <div class="card card-signup" data-background-color="blue" style="margin-top:200px">-->
+           <mat-card>
+              <mat-card-header>
+                 
+                  <mat-card-title>
+                      <mat-toolbar color="primary" style="margin-top: 20px;margin-bottom: 20px;">
+                          <span class="spacer"></span>
+                          <h2 style="margin-left:300px;">Liste des reservations</h2>
+                          <span class="spacer"></span>
+                          </mat-toolbar>
+                </mat-card-title>
+                  
+                </mat-card-header>
+                <mat-card-content>
+                <div *ngIf="!ready" align="center">
+                    <mat-spinner class="spinner" align="center"></mat-spinner>
+                </div>
+            <mat-table *ngIf="ready" #table [dataSource]="dataSource">
+
+              <ng-container matColumnDef="cne">
+                <mat-header-cell *matHeaderCellDef> Numero Carte Etudiant </mat-header-cell>
+                <mat-cell *matCellDef="let row" > 
+                    <span *ngFor="let etudiant of etudiants ">
+                      <span *ngIf="row.etudiantId === etudiant.id">{{etudiant.numCE}}</span>
+                    </span> 
+                </mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="nom">
+                  <mat-header-cell *matHeaderCellDef> Nom </mat-header-cell>
+                  <mat-cell *matCellDef="let row"  >
+                      <span *ngFor="let etudiant of etudiants ">
+                          <span *ngIf="row.etudiantId === etudiant.id">{{etudiant.nom}}</span>
+                        </span> 
+                  </mat-cell>
+                </ng-container>
+              <ng-container matColumnDef="prenom">
+                <mat-header-cell *matHeaderCellDef> Prenom </mat-header-cell>
+                <mat-cell *matCellDef="let row" >
+                    <span *ngFor="let etudiant of etudiants ">
+                        <span *ngIf="row.etudiantId === etudiant.id">{{etudiant.prenom}}</span>
+                      </span> 
+                </mat-cell>
+              </ng-container>
+        
+              <ng-container matColumnDef="chambre">
+                <mat-header-cell *matHeaderCellDef> Chambre </mat-header-cell>
+                <mat-cell *matCellDef="let row"   > 
+                    <span *ngFor="let chambre of chambres ">
+                        <span *ngIf="row.chambreId === chambre.id">{{chambre.code}}</span>
+                      </span> 
+                </mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="position">
+                <mat-header-cell *matHeaderCellDef> Position </mat-header-cell>
+                <mat-cell *matCellDef="let row"  >
+                    {{row.position}}
+                </mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="date">
+                  <mat-header-cell *matHeaderCellDef> Date </mat-header-cell>
+                  <mat-cell *matCellDef="let row"  >
+                      {{row.date | date}}
+                  </mat-cell>
+                </ng-container>
+        
+              <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+              <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        
+            </mat-table>
+            <mat-card-actions>
+            <mat-paginator [length]="length"
+                          [pageSize]="pageSize"
+                          [pageSizeOptions]="pageSizeOptions"
+                          (page)="onPageEvent($event)">
+            </mat-paginator>
+          </mat-card-actions>
+          </mat-card-content>
+          </mat-card>
+                  
+             <!-- </div>-->
+      
+      </div>
+      </div>
+
+
+</div>
+
+
+<footer class="footer" data-background-color="black">
+  <div class="container">
+      <nav>
+          <ul>
+              <li>
+                  <a href="https://www.creative-tim.com">
+                      ESP
+                  </a>
+              </li>
+              <li>
+                  <a href="http://presentation.creative-tim.com">
+                      A propos de nous
+                  </a>
+              </li>
+              <li>
+                  <a href="http://blog.creative-tim.com">
+                      Blog
+                  </a>
+              </li>
+              <li>
+                  <a href="https://github.com/creativetimofficial/now-ui-kit/blob/master/LICENSE.md">
+                      MIT License
+                  </a>
+              </li>
+          </ul>
+      </nav>
+      <div class="copyright">
+          &copy;
+          <script>
+              document.write(new Date().getFullYear())
+          </script>, Copyright
+          <a href="http://www.invisionapp.com" target="_blank">ESP</a>/
+          <a href="https://www.creative-tim.com" target="_blank">UCAD</a>.
+      </div>
+  </div>
+</footer>
+</div>
+
+

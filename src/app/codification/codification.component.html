@@ -1,0 +1,211 @@
+<div class="wrapper text-center">
+  <div class="page-header clear-filter" filter-color="orange">
+          <div class="page-header-image" data-parallax="true" style="background-image: url('./assets/img/chambre.jpg');">
+          </div>
+<div class="container">
+
+  <div class="content-center brand">
+          <!--<div class="card card-signup" data-background-color="orange">-->
+              <mat-card>
+                  <mat-card-header>
+                     
+                      <mat-card-title>
+                          <mat-toolbar color="primary" style="margin-top: 20px;margin-bottom: 20px;">
+                              <span class="spacer"></span>
+                              <h2 style="margin-left:300px;">Faites votre reservation ici</h2>
+                              <span class="spacer"></span>
+                              </mat-toolbar>
+                    </mat-card-title>
+                  </mat-card-header>
+                  <mat-card-content>
+              <mat-vertical-stepper [linear]="isLinear" style="background-color:lightskyblue;" >
+                  <mat-step [stepControl]="firstFormGroup">
+                    <form [formGroup]="firstFormGroup">
+                      <ng-template matStepLabel>Choisissez votre batiment</ng-template>
+                      
+                        <!--<input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>-->
+                        <mat-form-field editable="true">
+                          <mat-select  formControlName="firstCtrl" [(value)]="bat" placeholder="Batiment"  required>
+                            <span *ngIf="!ready" >
+                              <mat-progress-spinner mode = "indeterminate" align="center"></mat-progress-spinner>
+                            </span>
+                            <mat-option>None</mat-option>
+                            <mat-option *ngFor="let batiment of batiments" [value]="batiment.id">{{batiment.nomBatiment}}</mat-option>
+                          </mat-select>
+                        </mat-form-field> 
+                      <div>
+                        <button mat-button matStepperNext>Next</button>
+                      </div>
+                    </form>
+                  </mat-step>
+                  <mat-step [stepControl]="secondFormGroup">
+                    <form [formGroup]="secondFormGroup">
+                      <ng-template matStepLabel>Choisissez votre etage</ng-template>
+                      <mat-form-field>
+                        <mat-select  formControlName="secondCtrl" [(value)]="et"  placeholder="Etage" required>
+                          <mat-option>None</mat-option>
+                          <span *ngFor="let etage of etages">
+                          <mat-option  [value]="etage.id" *ngIf="etage.batimentId == bat">Etage numero {{etage.numEtage}}</mat-option>
+                          </span>
+                        </mat-select>
+                      </mat-form-field>
+                      
+                      <div>
+                        <button mat-button matStepperPrevious>Back</button>
+                        <button mat-button matStepperNext>Next</button>
+                      </div>
+                    </form>
+                  </mat-step>
+                  <mat-step [stepControl]="thirdFormGroup">
+                      <form [formGroup]="thirdFormGroup">
+                        <ng-template  matStepLabel>Choisissez votre couloir</ng-template>
+                        <mat-form-field>
+                          <mat-select  formControlName="thirdCtrl" [(value)]="coul"  placeholder="Couloir" required>
+                            <mat-option>None</mat-option>
+                            <span *ngFor="let couloir of couloirs">
+                            <mat-option *ngIf="couloir.etageId == et" [value]="couloir.id">{{couloir.designation}}</mat-option>
+                            </span>
+                          </mat-select>
+                        </mat-form-field>
+                        <div>
+                          <button mat-button matStepperPrevious>Back</button>
+                          <button mat-button matStepperNext>Next</button>
+                        </div>
+                      </form>
+                    </mat-step>
+                    <mat-step [stepControl]="forthFormGroup">
+                        <form [formGroup]="forthFormGroup" (ngSubmit)="add()">
+                          <ng-template matStepLabel>Choisissez votre chambre</ng-template>
+                          <mat-form-field>
+                            <mat-select  formControlName="forthCtrl" [(value)]="ch" placeholder="Chambre" [(ngModel)]="codification.chambreId" required>
+                              <mat-option>None</mat-option>
+                              <span *ngFor="let chambre of chambres">
+                                <span *ngFor="let codif of codifications">
+                              <mat-option *ngIf="chambre.couloirId == coul" [value]="chambre.id" [disabled]="(codif.chambreId == chambre.id) && (codif.position == chambre.nbpositions)">{{chambre.code}}</mat-option>
+                            </span>
+                              </span>
+                            </mat-select>
+                          </mat-form-field>
+                          <div>
+                            <button mat-button matStepperPrevious>Back</button>
+                            <button mat-button type="submit" matStepperNext>Next</button>
+                          </div>
+                        </form>
+                      </mat-step>
+                  <mat-step>
+                    <ng-template matStepLabel>Terminé</ng-template>
+                    Félicitations vous avez terminé votre codification
+                    <div>
+                      <button mat-button (click)="goback()" >Retour a la page d'accueil</button>
+                    </div>
+                  </mat-step>
+                </mat-vertical-stepper>
+                <!--<form [formGroup]="myformGroup">
+                <mat-vertical-stepper [linear]="isLinear" formArrayName="items" style="background-color:lightskyblue;" >
+                          <mat-step   formGroupName='0' [stepControl]="items.get(0)" editable="true">
+                        <ng-template matStepLabel>Choisissez votre batiment</ng-template>
+                        <mat-form-field>
+                          <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
+                        </mat-form-field>
+                        <div>
+                          <button mat-button matStepperNext>Next</button>
+                        </div>
+    
+                    </mat-step>
+                    <mat-step  formGroupName='1' [stepControl]="myformGroup.get('items').control">
+                      
+                        <ng-template matStepLabel>Choisissez votre etage</ng-template>
+                        <mat-form-field>
+                          <input matInput placeholder="Address" formControlName="secondCtrl" required>
+                        </mat-form-field>
+                        <div>
+                          <button mat-button matStepperPrevious>Back</button>
+                          <button mat-button matStepperNext>Next</button>
+                        </div>
+                      
+                    </mat-step>
+                    <mat-step formGroupName="2" [stepControl]="myformGroup.get('items').controls">
+                        
+                          <ng-template  matStepLabel>Choisissez votre couloir</ng-template>
+                          <mat-form-field>
+                            <input matInput placeholder="Couloir" formControlName="thirdCtrl" required>
+                          </mat-form-field>
+                          <div>
+                            <button mat-button matStepperPrevious>Back</button>
+                            <button mat-button matStepperNext>Next</button>
+                          </div>
+                        
+                      </mat-step>
+                      <mat-step formGroupName="3" [stepControl]="items.get([3])">
+                          
+                            <ng-template matStepLabel>Choisissez votre chambre</ng-template>
+                            <mat-form-field>
+                              <input matInput placeholder="Chambre" formControlName="forthCtrl" required>
+                            </mat-form-field>
+                            <div>
+                              <button mat-button matStepperPrevious>Back</button>
+                              <button mat-button matStepperNext>Next</button>
+                            </div>
+                          
+                        </mat-step>
+                    <mat-step  formGroupName="4" [stepControl]="items.get([4])">
+                      <ng-template matStepLabel>Terminé</ng-template>
+                      Félicitations vous avez terminé votre codification
+                      <div>
+                        <button mat-button matStepperPrevious>Back</button>
+                      </div>
+                    </mat-step>
+                  
+                  </mat-vertical-stepper>
+                </form>-->
+                </mat-card-content>
+                </mat-card>
+
+                  
+            <!--  </div>-->
+      
+      </div>
+     </div>
+
+
+</div>
+
+
+<footer class="footer" data-background-color="black">
+  <div class="container">
+      <nav>
+          <ul>
+              <li>
+                  <a href="https://www.creative-tim.com">
+                      ESP
+                  </a>
+              </li>
+              <li>
+                  <a href="http://presentation.creative-tim.com">
+                      A propos de nous
+                  </a>
+              </li>
+              <li>
+                  <a href="http://blog.creative-tim.com">
+                      Blog
+                  </a>
+              </li>
+              <li>
+                  <a href="https://github.com/creativetimofficial/now-ui-kit/blob/master/LICENSE.md">
+                      MIT License
+                  </a>
+              </li>
+          </ul>
+      </nav>
+      <div class="copyright">
+          &copy;
+          <script>
+              document.write(new Date().getFullYear())
+          </script>, Copyright
+          <a href="http://www.invisionapp.com" target="_blank">ESP</a>/
+          <a href="https://www.creative-tim.com" target="_blank">UCAD</a>.
+      </div>
+  </div>
+</footer>
+</div>
+<router-outlet></router-outlet>
